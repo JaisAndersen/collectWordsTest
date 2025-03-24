@@ -32,6 +32,20 @@ namespace collectWordsTest
             Assert.AreEqual("collectWords", driver.Title);
 
             IWebElement inputElement = driver.FindElement(By.Id("nameTextInput"));
+            inputElement.SendKeys("Test string");
+
+            IWebElement buttonElement = driver.FindElement(By.Id("saveButton"));
+            buttonElement.Click();
+
+            IWebElement buttonElementTwo = driver.FindElement(By.Id("showButton"));
+            buttonElementTwo.Click();
+
+
+            IList<IWebElement> rowElement = driver.FindElements(By.TagName("tr"));
+            string rowText = rowElement[1].Text;
+
+
+            Assert.AreEqual("0 Test string", rowText);
         }
     }
 }
